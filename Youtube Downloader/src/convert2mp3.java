@@ -7,13 +7,15 @@ public class convert2mp3 {
 
 	}
 
-	public void conversion(String t) {
+	public void conversion(String input, String output) {
 		try {
+			System.out.println(input);
 			String line;
-			Process p = Runtime
-					.getRuntime()
-					.exec("ffmpeg -i test.flv -vn -ar 44100 -ac 2 -ab 320 -f mp3 sound.mp3");
-			
+			Process p = Runtime.getRuntime().exec(
+					"ffmpeg -i " + "\"" + input + "\""
+							+ ".flv -vn -ar 44100 -ac 2 -ab 320 -f mp3 \""
+							+ output + "\".mp3");
+
 			BufferedReader bri = new BufferedReader(new InputStreamReader(
 					p.getInputStream()));
 			BufferedReader bre = new BufferedReader(new InputStreamReader(
@@ -27,7 +29,7 @@ public class convert2mp3 {
 			}
 			bre.close();
 			p.waitFor();
-			System.out.println("Done.1");
+			System.out.println("Done.");
 		} catch (Exception err) {
 			err.printStackTrace();
 		}

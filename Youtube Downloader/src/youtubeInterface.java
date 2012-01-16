@@ -8,27 +8,27 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 public class youtubeInterface {
-	public static String FindVideoTitle(String inputsource)
-	{
+	public static String FindVideoTitle(String inputsource) {
 		String ResultString = null;
 		try {
-			Pattern regex = Pattern.compile("title=\".{0,100}\">  <link rel=\"alternate\"");
+			Pattern regex = Pattern
+					.compile("title=\".{0,100}\">  <link rel=\"alternate\"");
 			Matcher regexMatcher = regex.matcher(inputsource);
 			if (regexMatcher.find()) {
 				ResultString = regexMatcher.group();
-			} 
+			}
 		} catch (PatternSyntaxException ex) {
 			// Syntax error in the regular expression
 		}
 		ResultString = ResultString.substring(7);
 		String[] parts = ResultString.split("\">  <link");
-		ResultString=parts[0];
+		ResultString = parts[0];
 		ResultString = ResultString.replace("&#39;", "'");
 		ResultString = ResultString.replace("&amp;", "&");
 		return ResultString;
-		
+
 	}
-	
+
 	public static String FindYoutubeVideo(String input) {
 		// finds video
 		String ResultString = null;

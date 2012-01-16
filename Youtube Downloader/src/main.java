@@ -3,13 +3,16 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class main {
+	public static String URLtoVideo;
 
 	public static void main(String[] args) throws Exception {
 		String oursite = GetURL();
-		getPageSource(oursite);
-		String thename = getFileName();
-		DownloadVideo(oursite, thename);
-		ConvertVideoToMp3();
+		String source = getPageSource(oursite);
+		String videotitle = youtubeInterface.FindVideoTitle(source);
+		System.out.println("\t" + videotitle);
+		DownloadVideo(oursite, videotitle);
+
+		ConvertVideoToMp3(videotitle);
 
 	}
 
@@ -21,7 +24,7 @@ public class main {
 				.println("Go ahead and enter in URL you want to download the youtube video of: ");
 
 		String URL = scan.nextLine(); // input url
-
+		URLtoVideo = URL;
 		if (!URL.startsWith("http://"))
 			URL = "http://" + URL;
 		if (!URL.startsWith("http://www."))
@@ -32,7 +35,7 @@ public class main {
 
 	public static String getFileName() {
 		Scanner scan = new Scanner(System.in);
-		System.out.println("What should I save the file as? ");
+		System.out.println("Filename? ");
 		String filename = scan.nextLine();
 		return filename;
 	}
@@ -53,7 +56,7 @@ public class main {
 														// specified url
 
 		URL correct = new URL(youtubeURL); // the url of the video file.
-		File output = new File("test" + ".flv");
+		File output = new File(FileName + ".flv");
 
 		final Downloader cat = new Downloader(correct, output);
 
@@ -73,8 +76,8 @@ public class main {
 		cat.waitUntilCompleted();
 	}
 
-	public static void ConvertVideoToMp3() {
-		convert2mp3 tomp4 = new convert2mp3();
-		tomp4.conversion("test.flv");
+	public static void ConvertVideoToMp3(String input) {
+		convert2mp3 tomp3 = new convert2mp3();
+		tomp3.conversion(input, input);
 	}
 }
