@@ -13,7 +13,7 @@ public class convert2mp3 {
 			String line;
 			Process p = Runtime.getRuntime().exec(
 					"ffmpeg -i " + "\"" + input + "\""
-							+ ".flv -vn -ar 44100 -ac 2 -ab 320 -f mp3 \""
+							+ ".flv -vn -ar 44100 -ac 4 -ab 320 -f mp3 \""
 							+ output + "\".mp3");
 
 			BufferedReader bri = new BufferedReader(new InputStreamReader(

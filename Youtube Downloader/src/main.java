@@ -16,6 +16,8 @@ public class main {
 
 	}
 
+		//Prompts user about the URL which we will deal with. 
+		//Sanatize user input by making sure it's in either "http://www." or "http://" format.
 	public static String GetURL() {
 
 		Scanner scan = new Scanner(System.in);
@@ -32,20 +34,20 @@ public class main {
 		return URL;
 
 	}
-
+	//Prompts user for the filename, returns it.
 	public static String getFileName() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Filename? ");
 		String filename = scan.nextLine();
 		return filename;
 	}
-
+	//Download youtube video page to String.
 	public static String getPageSource(String URL) throws IOException {
 
 		return youtubeInterface.downloadWebpage(URL);
 
 	}
-
+	//Downloads the video. Appends .flv filename. Shows ProgressBar
 	public static void DownloadVideo(String URL, String FileName)
 			throws Exception {
 
@@ -75,7 +77,7 @@ public class main {
 		cat.run();
 		cat.waitUntilCompleted();
 	}
-
+	//call to convert 2 mp3.
 	public static void ConvertVideoToMp3(String input) {
 		convert2mp3 tomp3 = new convert2mp3();
 		tomp3.conversion(input, input);

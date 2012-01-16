@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 public class youtubeInterface {
+	//Finds video title through Regex
 	public static String FindVideoTitle(String inputsource) {
 		String ResultString = null;
 		try {
@@ -28,9 +29,9 @@ public class youtubeInterface {
 		return ResultString;
 
 	}
-
+	// finds video through regex and URL decoding.
 	public static String FindYoutubeVideo(String input) {
-		// finds video
+		
 		String ResultString = null;
 		try {
 			Pattern regex = Pattern
@@ -53,7 +54,7 @@ public class youtubeInterface {
 
 	}
 
-	// downloads html of a webpage.
+	// downloads html of a webpage, youtube in our case.
 	public static String downloadWebpage(String link) throws IOException {
 
 		URL url = new URL(link);
